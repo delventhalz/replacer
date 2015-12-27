@@ -95,9 +95,12 @@ var switchIsIn = function(word) {
   return false;
 }
 
-// Returns a word from cipher, or prompts if unknown.
+// Returns a word from cipher, or prompts if unknown. Handles caps.
 var decipher = function(word) {
-  var capitalized = word[0] == word[0].toUpperCase();
+  var allCaps = word == word.toUpperCase();
+  var capitalized = word[0] == word[0].toUpperCase() && !allCaps;
+
+  if (allCaps) word = word.toLowerCase();
   if (capitalized) word = word[0].toLowerCase() + word.slice(1);
 
   if (cipher[word]) {
@@ -107,7 +110,9 @@ var decipher = function(word) {
     word = prompt(word);
   }
 
+  if (allCaps) word = word.toUpperCase();
   if (capitalized) word = word[0].toUpperCase() + word.slice(1);
+
   return word;
 };
 
@@ -129,7 +134,9 @@ var prompt = function(word) {
       }
     }
   } else if (switches[changed]) {
-    changed = word.replace(switches[changed], changed);
+    // Build RegExp object to replace all shortcut instances.
+    var regexp = new RegExp(switches[changed], 'g');
+    changed = word.replace(regexp, changed);
   }
 
   cipher[word] = changed;
