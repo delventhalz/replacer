@@ -9,7 +9,7 @@ npm install
 Once the most recent versions of readline-sync and spellchecker are installed, Replacer.js will be ready to use.
 
 ### License and Copyright
-Standard [MIT License](https://github.com/delventhalz/replacer.js/blob/master/README.md) applies. If it's useful to you, do what you want with it, but credit me and it's not my fault if it breaks.
+Standard [MIT License](https://github.com/delventhalz/replacer.js/blob/master/LICENSE.md) applies. If it's useful to you, do what you want with it, but credit me and it's not my fault if it breaks.
 
 ### Usage
 From within the directory for this repo type the command: 
@@ -28,7 +28,7 @@ You may specify a different directory for `cipher.json` and `ignore.json` by usi
 ```
 node replacer @ff
 ```
-This will use `ignore.json` and `cipher.json` files stored in the `/ff` directory. **(NOTE: 0.1 does not currently support this @ argument, and will always use /words)**
+This will use `ignore.json` and `cipher.json` files stored in the `/ff` directory. **(NOTE: 0.1 does not currently support this @ argument, and will always use the 'words' directory)**
 
 You can mix and match these arguments however you like: 
 ```
@@ -73,18 +73,20 @@ In order to customize your shortcuts, simply modify the `shortcuts.json` file in
 * If the user inputs a backtick `` ` ``, the word will be skipped, but not permenantly added to the ignore list (useful for words that are unclear). **(NOTE: Not enabled in 0.1)**
 * If the user inputs an asterisk ` * `, and custom defaults have been set, then every replace specified by those shortcuts will be executed.
 
-### Using the included First Folio dictionaries
-The default cipher and ignore files included in this repo are designed to switch u's, v's, j's, and i's in Shakespeare's First Folio. If that is your purpose in downloading Replacer.js, then it is fairly inconsequential to run.
+### Using Replacer.js with Shakespeare's First Folio
+The default cipher and ignore files included in this repo are designed specifically to make Shakespeare's First Folio more readable by switching u's, v's, j's, and i's appropriately. If that is your purpose in downloading Replacer.js, then it is rather simple to use. After installing:
 
-1. Copy your chosen First Folio text. I prefer the formatting on the [University of Chicago's site](http://www.lib.uchicago.edu/efts/OTA-SHK/restricted/search.form.html).
+1. Copy your chosen First Folio text to the clipboard. I prefer the formatting on the [University of Chicago's site](http://www.lib.uchicago.edu/efts/OTA-SHK/restricted/search.form.html).
 
 2. Paste the text into `target.txt` or another text file you plan on using.
 
-3. Run Replacer.js on your files.
+3. Run Replacer.js on your files (as instructed in Usage above).
 
 4. Respond to user prompts as needed.
+
+5. That's it!
 
 **(NOTE: Current cipher and ignore files are incomplete, and contain known issues)**
 
 ### Bugs and Typos
-If you notice any bugs in the code, or typos in the included First Folio cipher and ignore files, please send as detailed a report as you can (including text being used) to [delventhalz@gmail.com](mailto:delventhalz@gmail.com?subject=Replacer%20Bug%20Report).
+If you notice any bugs in the code, or typos in the included First Folio cipher and ignore files, please send as detailed a bug report as possible (including the text being changed) to [delventhalz@gmail.com](mailto:delventhalz@gmail.com?subject=Replacer%20Bug%20Report).
