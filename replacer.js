@@ -40,6 +40,12 @@ var switches = {
 // Skip object works like ignore, but is not saved to disk.
 var skip = {};
 
+// Counters
+var wordCount = 0,
+changeCount = 0,
+cipherCount = 0;
+
+
 
 // Traverse a string and decifer each word.
 var transmogrify = function(string) {
@@ -59,6 +65,7 @@ var transmogrify = function(string) {
       word = string.slice(wordStart, i);
       result += decipher(word);
       result += string[i];
+      wordCount++;
       inWord = false;
 
     // Just pass whitespace characters through.
@@ -108,6 +115,7 @@ var decipher = function(word) {
 
   if (cipher[word]) {
     word = cipher[word];
+    changeCount++;
   } else if (check.isMisspelled(word) && 
     switchIsIn(word) && !ignore[word] && !skip[word]) {
     word = prompt(word);
@@ -151,6 +159,8 @@ var prompt = function(word) {
 
   cipher[word] = changed;
   ignore[changed] = true;
+  cipherCount++;
+  changeCount++;
   return changed;
 }
 
@@ -169,6 +179,21 @@ var readableJSON = function(obj) {
 
   return readable;
 };
+
+
+// Console log some information about the process.
+var report = function() {
+  var skippedWords = '';
+
+  for (var key in skip) {
+    skippedWords += key + '    ';
+  }
+
+  console.log('\n' + wordCount + ' words analyzed.');
+  console.log(changeCount + ' words changed.');
+  console.log(cipherCount + ' new swaps in the cipher.\n');
+  console.log('Skipped words: ' + skippedWords);
+}
 
 
 // Write to disk the updated text, cipher, and ignore list.
@@ -196,3 +221,5 @@ for (var i = 2; i < process.argv.length; i++) {
   var text = fs.readFileSync(path.target, 'utf8');
   write(transmogrify(text));
 }
+
+report();
