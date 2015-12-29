@@ -164,22 +164,6 @@ var prompt = function(word) {
   return changed;
 }
 
-// Create a readable JSON string.
-var readableJSON = function(obj) {
-  var min = JSON.stringify(obj);
-  var readable = '';
-
-  for (var i = 0; i < min.length; i++) {
-    if (min[i] === ',') readable += ',\n  ';
-    else if (min[i] === ':') readable += ': ';
-    else if (min[i] === '{') readable += '{\n  ';
-    else if (min[i] === '}') readable += '\n}';
-    else readable += min[i];
-  }
-
-  return readable;
-};
-
 
 // Console log some information about the process.
 var report = function() {
@@ -201,10 +185,10 @@ var write = function(data) {
   fs.writeFile(path.target, data, 'utf8', function(err) {
     if (err) throw err;
   });
-  fs.writeFile(path.cipher, readableJSON(cipher), 'utf8', function(err) {
+  fs.writeFile(path.cipher, JSON.stringify(cipher, null, 2), 'utf8', function(err) {
     if (err) throw err;
   });
-  fs.writeFile(path.ignore, readableJSON(ignore), 'utf8', function(err) {
+  fs.writeFile(path.ignore, JSON.stringify(ignore, null, 2), 'utf8', function(err) {
     if (err) throw err;
   });
 };
