@@ -37,6 +37,9 @@ var switches = {
   j: 'i'
 };
 
+// Skip object works like ignore, but is not saved to disk.
+var skip = {};
+
 
 // Traverse a string and decifer each word.
 var transmogrify = function(string) {
@@ -106,7 +109,7 @@ var decipher = function(word) {
   if (cipher[word]) {
     word = cipher[word];
   } else if (check.isMisspelled(word) && 
-    switchIsIn(word) && !ignore[word]) {
+    switchIsIn(word) && !ignore[word] && !skip[word]) {
     word = prompt(word);
   }
 
@@ -119,8 +122,14 @@ var decipher = function(word) {
 // Prompt the user for the spelling of a word.
 var prompt = function(word) {
   var changed = readline.question(word + '? ');
+
   if (changed.length === 0) {
     ignore[word] = true;
+    return word;
+  }
+
+  if (changed === '`') {
+    skip[word] = true;
     return word;
   }
 
@@ -133,6 +142,7 @@ var prompt = function(word) {
         changed += word[i];
       }
     }
+
   } else if (switches[changed]) {
     // Build RegExp object to replace all shortcut instances.
     var regexp = new RegExp(switches[changed], 'g');

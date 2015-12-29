@@ -40,7 +40,7 @@ While running, Replacer.js will prompt the user with targeted words which it doe
 
 * If the user types in a replacement for the word, Replacer will make the switch, and remember it next time the word comes up.
 * Alternatively, if the user simply presses enter without inputting any text, the word will be unchanged, and added to the ignore list.
-* If the user inputs a backtick `` ` ``, the word will be skipped, but not added to the ignore list (useful for words that the user is unsure of). **(NOTE: Not enabled in 0.1)**
+* If the user inputs a backtick `` ` ``, the word will be skipped, but not added to the ignore list (useful for words that the user is unsure of).
 * If the user inputs an asterisk ` * `, and custom shortcuts have been set (see below), then every possible replacement specified by those shortcuts will be executed.
 
 ### Custom Shortcuts
