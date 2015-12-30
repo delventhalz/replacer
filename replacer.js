@@ -176,7 +176,8 @@ var report = function() {
   console.log('\n' + wordCount + ' words analyzed.');
   console.log(changeCount + ' words changed.');
   console.log(cipherCount + ' new swaps in the cipher.\n');
-  console.log('Skipped words: ' + skippedWords);
+
+  if (skippedWords.length > 0) console.log('Skipped words: ' + skippedWords + '\n');
 }
 
 
